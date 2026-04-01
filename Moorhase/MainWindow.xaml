@@ -1,0 +1,99 @@
+﻿<Window x:Class="Moorhase.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Moorhase"
+        mc:Ignorable="d"
+        Title="Moorhase Game" Height="600" Width="800"
+        Background="LightGray"
+        WindowStartupLocation="CenterScreen"
+        PreviewKeyDown="Window_PreviewKeyDown">
+    <Grid Name="MainGrid">
+        <!-- Menu Screen -->
+        <Grid Name="MenuScreen" Background="DarkOliveGreen">
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                <TextBlock Text="🐰 MOORHASE 🐰" FontSize="48" FontWeight="Bold" Foreground="White" TextAlignment="Center" Margin="0,0,0,40"/>
+                <TextBlock Text="Wähle einen Spielmodus:" FontSize="20" Foreground="White" TextAlignment="Center" Margin="0,0,0,20"/>
+                <Button Name="TaskModeButton" Content="Aufgaben-Modus" Width="250" Height="50" FontSize="16" Margin="0,10" Click="TaskModeButton_Click" Background="YellowGreen" Foreground="Black" FontWeight="Bold"/>
+                <Button Name="ExpertModeButton" Content="Expert-Modus" Width="250" Height="50" FontSize="16" Margin="0,10" Click="ExpertModeButton_Click" Background="OrangeRed" Foreground="White" FontWeight="Bold"/>
+                <Button Name="ShowHighScoresButton" Content="Highscores anzeigen" Width="250" Height="50" FontSize="16" Margin="0,30,0,0" Click="ShowHighScoresButton_Click" Background="SteelBlue" Foreground="White" FontWeight="Bold"/>
+            </StackPanel>
+        </Grid>
+
+        <!-- Name Input Screen -->
+        <Grid Name="NameInputScreen" Background="DarkOliveGreen" Visibility="Collapsed">
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                <TextBlock Name="ModeIntroLabel" FontSize="24" Foreground="White" TextAlignment="Center" Margin="0,0,0,30" FontWeight="Bold"/>
+                <TextBlock Text="Gib deinen Namen ein:" FontSize="18" Foreground="White" TextAlignment="Center" Margin="0,0,0,15"/>
+                <TextBox Name="PlayerNameTextBox" Width="250" Height="40" FontSize="16" Padding="10" Margin="0,0,0,20"/>
+                <Button Name="StartGameButton" Content="Spiel starten" Width="250" Height="50" FontSize="16" Click="StartGameButton_Click" Background="YellowGreen" Foreground="Black" FontWeight="Bold"/>
+            </StackPanel>
+        </Grid>
+
+        <!-- Game Screen -->
+        <Grid Name="GameScreen" Visibility="Collapsed">
+            <DockPanel>
+                <!-- Top Menu Bar -->
+                <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Background="DarkGray" Height="50" Margin="0">
+                    <!-- Rabbits Caught Display -->
+                    <Label Content="🐰" VerticalAlignment="Center" Foreground="White" FontSize="16" FontWeight="Bold" Margin="10,0,0,0"/>
+                    <Label Name="RabbitsLabel" Content="x0" VerticalAlignment="Center" Foreground="White" FontSize="16" FontWeight="Bold" Width="40"/>
+                    
+                    <!-- Separator -->
+                    <Separator Width="2" Background="Gray" Height="30" VerticalAlignment="Center" Margin="5,0"/>
+                    
+                    <!-- Score Display -->
+                    <Label Content="Punkte: " VerticalAlignment="Center" Foreground="White" FontSize="16" FontWeight="Bold" Margin="5,0,0,0"/>
+                    <Label Name="ScoreLabel" Content="0" VerticalAlignment="Center" Foreground="White" FontSize="16" FontWeight="Bold" Width="60"/>
+                    
+                    <!-- Separator -->
+                    <Separator Width="2" Background="Gray" Height="30" VerticalAlignment="Center" Margin="5,0"/>
+                    
+                    <!-- Time Display -->
+                    <Label Content="Zeit: " VerticalAlignment="Center" Foreground="White" FontSize="16" FontWeight="Bold" Margin="5,0,0,0"/>
+                    <Label Name="TimeLabel" Content="2.0s" VerticalAlignment="Center" Foreground="White" FontSize="16" FontWeight="Bold" Width="60"/>
+                </StackPanel>
+                
+                <!-- Navigation Bar -->
+                <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" Background="DarkGray" Height="40" Margin="0">
+                    <Button Name="MaximizeButton" Content="Maximieren" Width="120" Margin="5" Click="MaximizeButton_Click" Background="SteelBlue" Foreground="White" FontWeight="Bold"/>
+                    <Button Name="FullscreenButton" Content="Vollbild" Width="100" Margin="5" Click="FullscreenButton_Click" Background="SteelBlue" Foreground="White" FontWeight="Bold"/>
+                    <Button Name="ResetButton" Content="800x600" Width="100" Margin="5" Click="ResetButton_Click" Background="SteelBlue" Foreground="White" FontWeight="Bold"/>
+                    <Separator Width="2" Background="Gray" Height="25" VerticalAlignment="Center" Margin="10,0"/>
+                    <Button Name="QuitGameButton" Content="ESC: Abbrechen" Width="120" Margin="5" Click="QuitGameButton_Click" Background="OrangeRed" Foreground="White" FontWeight="Bold"/>
+                </StackPanel>
+                
+                <!-- Game Grid -->
+                <Grid DockPanel.Dock="Top">
+                    <UniformGrid Name="GameGrid" Columns="8" Rows="8"/>
+                </Grid>
+            </DockPanel>
+        </Grid>
+
+        <!-- GameOver Screen -->
+        <Grid Name="GameOverScreen" Background="DarkRed" Visibility="Collapsed">
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                <TextBlock Text="GAME OVER" FontSize="48" FontWeight="Bold" Foreground="White" TextAlignment="Center" Margin="0,0,0,30"/>
+                <TextBlock Name="FinalScoreLabel" FontSize="28" Foreground="Yellow" TextAlignment="Center" Margin="0,0,0,15" FontWeight="Bold"/>
+                <TextBlock Name="GameOverReasonLabel" FontSize="18" Foreground="White" TextAlignment="Center" Margin="0,0,0,40"/>
+                <Button Name="MenuButton" Content="Zurück zum Menü" Width="250" Height="50" FontSize="16" Click="MenuButton_Click" Background="SteelBlue" Foreground="White" FontWeight="Bold"/>
+            </StackPanel>
+        </Grid>
+
+        <!-- Highscores Screen -->
+        <Grid Name="HighScoresScreen" Background="DarkOliveGreen" Visibility="Collapsed">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Text="HIGHSCORES" FontSize="32" FontWeight="Bold" Foreground="White" TextAlignment="Center" Margin="0,20"/>
+            <ListBox Grid.Row="1" Name="HighScoresListBox" Background="DarkGreen" Foreground="White" FontSize="16" Margin="50,20"/>
+            <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,20">
+                <Button Name="BackButton" Content="Zurück" Width="150" Height="40" FontSize="16" Click="BackButton_Click" Background="SteelBlue" Foreground="White" FontWeight="Bold" Margin="5"/>
+                <Button Name="ClearHighScoresButton" Content="Liste löschen" Width="150" Height="40" FontSize="16" Click="ClearHighScoresButton_Click" Background="OrangeRed" Foreground="White" FontWeight="Bold" Margin="5"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>
