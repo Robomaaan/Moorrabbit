@@ -1,6 +1,6 @@
 # Moorhase
 
-Ein simples Whack-a-Mole-Spiel für Windows in WPF/C#.
+A simple Whack-a-Mole game for Windows in WPF/C#.
 
 ## Installation
 
@@ -9,9 +9,9 @@ dotnet build
 dotnet run
 ```
 
-## Setup - Bilder
+## Setup - Images
 
-Die Bilder kommen in den `Assets` Ordner:
+Place your images in the `Assets` folder:
 
 ```
 Moorhase/Assets/
@@ -20,35 +20,35 @@ Moorhase/Assets/
 └── Jäger.png (optional)
 ```
 
-Wenn die Bilder fehlen, nutzt das Spiel Fallback-Farben.
+If images are missing, the game will use fallback colors.
 
-## Spielmodi
+## Game Modes
 
-**Aufgaben-Modus**
-- Falsche Klicks sind ok
-- Hasen erscheinen 2 Sekunden
-- Intervall wird pro Treffer um 10% kürzer (min. 500ms)
+**Task Mode**
+- Wrong clicks are allowed
+- Rabbits appear for 2 seconds
+- Interval decreases by 10% per hit (min. 500ms)
 
-**Expert-Modus**
-- Ein falscher Klick = Game Over
-- Zu langsam = Game Over
-- Intervall wird um 15% kürzer + alle 5s um 5% (min. 300ms)
-- Manchmal kommt auch ein Jäger - klickt man darauf = Game Over
+**Expert Mode**
+- One wrong click = Game Over
+- Too slow = Game Over
+- Interval decreases by 15% per hit + 5% every 5 seconds (min. 300ms)
+- Sometimes a hunter (Jäger) appears - clicking it = Game Over
 
-## Steuerung
+## Controls
 
-- **Mausklick** auf den Hasen
-- **ESC** zum Abbrechen
+- **Mouse click** on the rabbit
+- **ESC** to abort
 
-## Komplette Fenster-Controls
+## Full Window Controls
 
-- Maximieren
-- Vollbild
-- 800x600 zurücksetzen
+- Maximize
+- Fullscreen
+- Reset to 800x600
 
 ## Highscores
 
-Wird automatisch gespeichert unter:
+Automatically saved to:
 `%APPDATA%\Moorhase\highscores.json`
 - MVVM-ähnliche Architektur
 - Event-basierte Timer
